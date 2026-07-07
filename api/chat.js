@@ -26,7 +26,17 @@ export default async function handler(req, res) {
     });
 
     const data = await response.json();
+
+    if (!response.ok) {
+      console.error('Anthropic API error:', data);
+      return res.status(200).json({ reply: '[DEBUG] API error: ' + (data.error?.message || JSON.stringify(data)) });
+    }
+
     const reply = (data.content || []).map((b) => b.text || '').join('').trim();
+
+    if (!reply) {
+      return res.status(200).json({ reply: '[DEBUG] Empty response from API: ' + JSON.stringify(data) });
+    }
 
     return res.status(200).json({ reply });
   } catch (err) {
