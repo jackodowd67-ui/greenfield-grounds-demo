@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<title>Greenfield Grounds — Landscaping & Lawn Care, Farmington Hills MI</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700;800&display=swap');
+
+  :root{
+    color-scheme: light only;
+    --clay: #C1541D;
+    --clay-deep: #8F3D14;
+    --moss: #33472E;
+    --moss-deep: #1F2B1B;
+    --meadow: #6B8F4E;
+    --sand: #EDEAE2;
+    --sand-warm: #DFDACB;
+    --ink: #14170F;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{ font-family:'Barlow', sans-serif; background:#EDEAE2 !important; color:#14170F !important; line-height:1.6; overflow-x:hidden; }
+  h1,h2,h3,.display{ font-family:'Anton', sans-serif; font-weight:400; text-transform:uppercase; letter-spacing:0.01em; }
+  a{ color:inherit; }
+  .wrap{ max-width:1140px; margin:0 auto; padding:0 32px; }
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--clay); outline-offset:3px; }
+  @media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important; } }
+
+  @keyframes riseIn{ from{ opacity:0; transform:translateY(20px); } to{ opacity:1; transform:translateY(0); } }
+  .load-1{ animation:riseIn .8s cubic-bezier(.2,.8,.2,1) .1s both; }
+  .load-2{ animation:riseIn .8s cubic-bezier(.2,.8,.2,1) .3s both; }
+  .load-3{ animation:riseIn .8s cubic-bezier(.2,.8,.2,1) .5s both; }
+
+  .reveal{ opacity:0; transform:translateY(26px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.is-visible{ opacity:1; transform:translateY(0); }
+
+  header{ position:sticky; top:0; z-index:50; background:rgba(243,238,223,0.94) !important; backdrop-filter:blur(8px); border-bottom:1px solid rgba(32,36,28,0.1); }
+  .nav{ display:flex; align-items:center; justify-content:space-between; padding:18px 32px; max-width:1140px; margin:0 auto; }
+  .logo{ font-family:'Anton', sans-serif; text-transform:uppercase; letter-spacing:0.02em; font-size:1.3rem; color:#14170F !important; }
+  .nav-links{ display:flex; gap:34px; list-style:none; }
+  .nav-links a{ text-decoration:none; font-size:0.9rem; font-weight:600; color:#2B2E26 !important; }
+  .nav-cta{ background:#33472E !important; color:#EDEAE2 !important; padding:11px 22px; border:2px solid #14170F; border-radius:0; text-decoration:none; font-size:0.82rem; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; transition:background .15s ease; }
+  .nav-cta:hover{ background:#C1541D !important; }
+
+  /* HERO with growing grass signature */
+  .hero{ padding:90px 32px 40px; text-align:center; position:relative; }
+  .hero-photo-bg{
+    position:absolute; inset:0; z-index:-1;
+    background-image: linear-gradient(180deg, rgba(237,234,226,0.25) 0%, rgba(237,234,226,0.45) 55%, #EDEAE2 92%), url('https://images.unsplash.com/photo-1501520158826-76df880863a3?w=1600&q=85&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center 30%;
+  }
+  .eyebrow{ display:inline-flex; align-items:center; gap:10px; font-size:0.78rem; letter-spacing:0.16em; text-transform:uppercase; color:#C1541D !important; font-weight:700; margin-bottom:20px; }
+  .eyebrow::before, .eyebrow::after{ content:''; width:26px; height:1px; background:#C1541D; opacity:0.5; }
+  .hero h1{ font-size:clamp(2.6rem,5.5vw,4.4rem); line-height:1.05; max-width:15ch; margin:0 auto 22px; color:#14170F !important; }
+  .hero h1 em{ font-style:normal; color:#C1541D; }
+  .hero p.lede{ font-size:1.1rem; color:#3D4038 !important; max-width:44ch; margin:0 auto 36px; }
+  .hero-actions{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+  .btn-primary{ background:#33472E !important; color:#EDEAE2 !important; padding:16px 34px; border:2px solid #14170F; border-radius:0; text-decoration:none; font-weight:700; font-size:0.9rem; text-transform:uppercase; letter-spacing:0.06em; display:inline-block; transition:transform .15s ease, background .15s ease; }
+  .btn-primary:hover{ background:#1F2B1B !important; transform:translateY(-2px); }
+  .btn-ghost{ border:2px solid #14170F; color:#14170F !important; padding:14px 28px; border-radius:0; text-decoration:none; font-weight:700; font-size:0.9rem; text-transform:uppercase; letter-spacing:0.06em; display:inline-block; transition:border-color .15s ease, background .15s ease; }
+  .btn-ghost:hover{ border-color:#C1541D; background:rgba(193,84,29,0.06); }
+
+  /* Growing grass ground */
+  .grass-ground{ position:relative; max-width:640px; margin:56px auto 0; height:120px; }
+  .ground-line{ position:absolute; bottom:20px; left:0; right:0; height:2px; background:#C1541D; opacity:0.4; }
+  .blade{ position:absolute; bottom:20px; width:3px; background:linear-gradient(to top, #1F2B1B, #6B8F4E); border-radius:0 3px 0 0; transform-origin:bottom center; clip-path:inset(100% 0 0 0); animation:growBlade 1.4s ease-out forwards, swayBlade 3.5s ease-in-out infinite 1.4s; }
+  @keyframes growBlade{ to{ clip-path:inset(0% 0 0 0); } }
+  @keyframes swayBlade{ 0%,100%{ transform:rotate(-1.5deg); } 50%{ transform:rotate(1.5deg); } }
+
+  .strip{ background:#1F2B1B !important; color:#EDEAE2 !important; padding:20px 32px; }
+  .strip-inner{ max-width:1140px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:18px; font-size:0.87rem; }
+  .strip-inner strong{ color:#6B8F4E !important; }
+
+  .section{ padding:96px 32px; }
+  .section-head{ max-width:640px; margin:0 auto 56px; text-align:center; }
+  .section-head h2{ font-size:clamp(2rem,3.4vw,2.7rem); color:#14170F !important; }
+  .section-head p{ color:#3D4038 !important; margin-top:14px; }
+
+  /* SERVICES */
+  .services-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(32,36,28,0.12); border:1px solid rgba(32,36,28,0.12); }
+  .service-card{ position:relative; background-color:#EDEAE2 !important; padding:38px 30px; transition:background-color .2s ease; overflow:hidden; }
+  .service-card.has-photo{ padding-top:190px; }
+  .service-photo{ position:absolute; top:0; left:0; right:0; height:160px; background-size:cover; background-position:center; }
+  .service-photo::after{ content:''; position:absolute; inset:0; background:linear-gradient(180deg, rgba(20,23,15,0) 60%, #EDEAE2 96%); }
+  .service-card:hover{ background-color:#DFDACB !important; }
+  .service-icon{ width:34px; height:34px; margin-bottom:20px; color:#C1541D; }
+  .service-card h3{ font-size:1.2rem; color:#14170F !important; margin-bottom:10px; font-family:'Anton',sans-serif; font-weight:400; text-transform:uppercase; }
+  .service-card p{ font-size:0.9rem; color:#3D4038 !important; }
+
+  /* SEASONAL CYCLE - genuinely sequential, numbering earned */
+  .seasons{ background:#DFDACB !important; }
+  .season-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:28px; }
+  .season-card{ position:relative; padding-top:30px; }
+  .season-photo{ width:100%; height:100px; background-size:cover; background-position:center; margin-bottom:14px; border:2px solid #14170F; }
+  .season-label{ font-family:'Anton',sans-serif; font-size:1.3rem; color:#C1541D !important; position:absolute; top:-4px; left:0; }
+  .season-card h3{ font-size:1.05rem; margin-bottom:8px; color:#14170F !important; font-family:'IBM Plex Sans',sans-serif; font-weight:700; }
+  .season-card p{ font-size:0.88rem; color:#3D4038 !important; }
+  .season-icon{ width:38px; height:38px; margin:16px 0; color:#33472E; transition:transform .3s ease; }
+  .season-card:hover .season-icon{ transform:scale(1.15) rotate(-6deg); }
+
+  /* GALLERY */
+  .gallery-grid{ display:grid; grid-template-columns:1.3fr 1fr; gap:20px; }
+  .gallery-main{ background-color:#1F2B1B !important; border-radius:0; overflow:hidden; position:relative; min-height:380px; display:flex; align-items:flex-end; padding:28px; }
+  .gallery-main .tag{ background:#6B8F4E !important; color:#14170F !important; padding:6px 14px; border-radius:0; font-size:0.78rem; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; }
+  .gallery-side{ display:grid; grid-template-rows:1fr 1fr; gap:20px; }
+  .gallery-tile{ background-color:#DFDACB !important; border:1px solid rgba(32,36,28,0.12); border-radius:0; padding:24px; display:flex; flex-direction:column; justify-content:flex-end; }
+  .gallery-tile h4{ font-family:'Anton',sans-serif; text-transform:uppercase; color:#14170F !important; font-size:1.2rem; margin-bottom:6px; }
+  .gallery-tile p{ font-size:0.85rem; color:#3D4038 !important; }
+
+  /* TESTIMONIAL */
+  .testimonial{
+    position:relative; text-align:center; padding:100px 32px; color:#EDEAE2 !important;
+    background-image: linear-gradient(rgba(31,43,27,0.55), rgba(31,43,27,0.55)), url('https://images.unsplash.com/photo-1683316924890-6a8c5ab10d29?w=1400&q=85&auto=format&fit=crop') !important;
+    background-size: cover; background-position: center;
+  }
+  .testimonial blockquote{ font-family:'Anton',sans-serif; text-transform:uppercase; font-style:italic; font-size:clamp(1.5rem,2.6vw,2.1rem); max-width:760px; margin:0 auto 28px; line-height:1.4; }
+  .testimonial cite{ font-style:normal; font-size:0.9rem; opacity:0.8; }
+
+  /* CONTACT / QUOTE */
+  .contact{ background:#EDEAE2 !important; }
+  .contact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start; }
+  .contact-photo{ width:100%; height:220px; background-size:cover; background-position:center; border:2px solid #14170F; margin-bottom:26px; }
+  .contact-info h2{ font-size:2.1rem; color:#14170F !important; margin-bottom:18px; }
+  .contact-info p{ color:#3D4038 !important; margin-bottom:28px; max-width:44ch; }
+  .contact-detail{ display:flex; gap:14px; margin-bottom:18px; font-size:0.95rem; }
+  .contact-detail strong{ color:#14170F !important; display:block; font-size:0.78rem; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:2px; }
+
+  form{ display:flex; flex-direction:column; gap:16px; }
+  .form-row{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  label{ font-size:0.82rem; font-weight:700; color:#14170F !important; margin-bottom:6px; display:block; }
+  input, select, textarea{ width:100%; padding:12px 14px; border:1px solid rgba(32,36,28,0.25); border-radius:0; background:#fff !important; color:#14170F !important; font-family:'IBM Plex Sans',sans-serif; font-size:0.92rem; }
+  textarea{ resize:vertical; min-height:100px; }
+  input:focus, select:focus, textarea:focus{ outline:none; border-color:#33472E; }
+  .submit-btn{ background:#33472E !important; color:#EDEAE2 !important; border:none; padding:15px 28px; border-radius:0; font-weight:700; font-size:0.95rem; cursor:pointer; align-self:flex-start; transition:background .2s ease; }
+  .submit-btn:hover{ background:#1F2B1B !important; }
+
+  footer{ background:#14170F !important; color:rgba(243,238,223,0.7) !important; padding:48px 32px 28px; }
+  .footer-inner{ max-width:1140px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px; font-size:0.85rem; }
+  .footer-inner .logo{ color:#EDEAE2 !important; }
+
+  /* AI Chat Widget */
+  #chat-toggle{ position:fixed; bottom:26px; right:26px; z-index:100; width:60px; height:60px; border-radius:50%; background:linear-gradient(135deg, #C1541D, #33472E) !important; border:none; cursor:pointer; box-shadow:0 12px 30px -8px rgba(75,94,59,0.5); display:flex; align-items:center; justify-content:center; transition:transform .2s ease; }
+  #chat-toggle:hover{ transform:scale(1.08); }
+  #chat-toggle svg{ width:26px; height:26px; color:#EDEAE2; }
+  #chat-panel{ position:fixed; bottom:98px; right:26px; z-index:100; width:350px; max-width:calc(100vw - 40px); height:450px; background:#EDEAE2 !important; border-radius:14px; box-shadow:0 28px 64px -16px rgba(32,36,28,0.4); display:none; flex-direction:column; overflow:hidden; border:1px solid rgba(32,36,28,0.12); }
+  #chat-panel.open{ display:flex; }
+  .chat-header{ background:#1F2B1B !important; color:#EDEAE2 !important; padding:16px 18px; font-weight:700; font-size:0.95rem; display:flex; justify-content:space-between; align-items:center; }
+  .chat-header span.sub{ display:block; font-weight:400; font-size:0.75rem; opacity:0.7; margin-top:2px; }
+  #chat-close{ background:none; border:none; color:#EDEAE2; cursor:pointer; font-size:1.2rem; line-height:1; }
+  .chat-messages{ flex:1; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:10px; }
+  .msg{ max-width:82%; padding:10px 14px; border-radius:12px; font-size:0.88rem; line-height:1.4; }
+  .msg.bot{ background:#DFDACB !important; color:#14170F !important; align-self:flex-start; border-bottom-left-radius:2px; }
+  .msg.user{ background:#1F2B1B !important; color:#EDEAE2 !important; align-self:flex-end; border-bottom-right-radius:2px; }
+  .chat-input-row{ display:flex; border-top:1px solid rgba(32,36,28,0.12); padding:10px; gap:8px; }
+  .chat-input-row input{ flex:1; border:1px solid rgba(32,36,28,0.2); border-radius:20px; padding:9px 14px; font-size:0.85rem; }
+  .chat-input-row input:focus{ outline:none; border-color:#C1541D; }
+  .chat-send{ background:#6B8F4E !important; border:none; color:#14170F !important; border-radius:50%; width:36px; height:36px; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .typing-dot{ display:inline-block; width:5px; height:5px; border-radius:50%; background:#14170F; opacity:0.4; margin:0 1px; animation:blink 1.2s infinite; }
+  .typing-dot:nth-child(2){ animation-delay:.2s; }
+  .typing-dot:nth-child(3){ animation-delay:.4s; }
+  @keyframes blink{ 0%,60%,100%{ opacity:0.3; } 30%{ opacity:1; } }
+
+  @media (max-width: 880px){
+    .nav-links{ display:none; }
+    .services-grid{ grid-template-columns:1fr; }
+    .season-grid{ grid-template-columns:1fr 1fr; }
+    .gallery-grid{ grid-template-columns:1fr; }
+    .contact-grid{ grid-template-columns:1fr; }
+    .form-row{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <div class="logo">Greenfield Grounds</div>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#seasons">Seasons</a></li>
+      <li><a href="#work">Our Work</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Get a Quote</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-photo-bg"></div>
+  <div class="eyebrow load-1">Farmington Hills & Surrounding Area</div>
+  <h1 class="load-2">Grounds that <em>grow</em> on you, season after season</h1>
+  <p class="lede load-3">Lawn care, landscaping, and seasonal cleanup for homeowners who want their yard handled right the first time.</p>
+  <div class="hero-actions load-3">
+    <a href="#contact" class="btn-primary">Request a free quote</a>
+    <a href="#services" class="btn-ghost">See what we do</a>
+  </div>
+
+  <div class="grass-ground load-3" id="grass-ground">
+    <div class="ground-line"></div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="strip-inner">
+    <div><strong>200+</strong> properties serviced</div>
+    <div><strong>4.9★</strong> average rating</div>
+    <div><strong>Licensed</strong> & insured in Oakland County</div>
+    <div><strong>48-hr</strong> quote turnaround</div>
+  </div>
+</div>
+
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">What we do</div>
+      <h2>Full-yard care, one crew</h2>
+      <p>Every service below can be booked on its own or bundled into a seasonal plan.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card has-photo reveal">
+        <div class="service-photo" style="background-image:url('https://images.unsplash.com/photo-1689728318937-17d24bc0a65c?w=700&q=75&auto=format&fit=crop');"></div>
+        <h3>Weekly Lawn Care</h3>
+        <p>Mowing, edging, and trimming on a consistent schedule.</p>
+      </div>
+      <div class="service-card has-photo reveal">
+        <div class="service-photo" style="background-image:url('https://images.unsplash.com/photo-1675017359509-8747899df466?w=700&q=85&auto=format&fit=crop');"></div>
+        <h3>Landscape Design</h3>
+        <p>New garden beds, mulch refresh, and plantings suited to Michigan's climate.</p>
+      </div>
+      <div class="service-card has-photo reveal">
+        <div class="service-photo" style="background-image:url('https://images.unsplash.com/photo-1628340981113-fe1949fe5cc0?w=700&q=75&auto=format&fit=crop');"></div>
+        <h3>Seasonal Cleanup</h3>
+        <p>Spring debris removal and fall leaf cleanup, on schedule.</p>
+      </div>
+      <div class="service-card has-photo reveal">
+        <div class="service-photo" style="background-image:url('https://images.unsplash.com/photo-1483385573908-0a2108937c4a?w=700&q=75&auto=format&fit=crop');"></div>
+        <h3>Snow Removal</h3>
+        <p>Driveway and walkway clearing on-call through winter.</p>
+      </div>
+      <div class="service-card has-photo reveal">
+        <div class="service-photo" style="background-image:url('https://images.unsplash.com/photo-1656977392370-897f2262582b?w=700&q=75&auto=format&fit=crop');"></div>
+        <h3>Hardscaping</h3>
+        <p>Paver patios, retaining walls, and walkways built to last.</p>
+      </div>
+      <div class="service-card has-photo reveal">
+        <div class="service-photo" style="background-image:url('https://images.unsplash.com/photo-1542806136-b50e2a5b006f?w=700&q=75&auto=format&fit=crop');"></div>
+        <h3>Irrigation Systems</h3>
+        <p>Sprinkler install, spring startup, and fall winterization.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section seasons" id="seasons">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">The yearly cycle</div>
+      <h2>What your yard needs, and when</h2>
+    </div>
+    <div class="season-grid">
+      <div class="season-card reveal">
+        <span class="season-label">I.</span>
+        <div class="season-photo" style="background-image:url('https://images.unsplash.com/photo-1721138941961-cb245dd928af?w=500&q=85&auto=format&fit=crop');"></div>
+        <h3>Spring</h3>
+        <p>Cleanup, mulch refresh, and irrigation startup.</p>
+      </div>
+      <div class="season-card reveal">
+        <span class="season-label">II.</span>
+        <div class="season-photo" style="background-image:url('https://images.unsplash.com/photo-1690068023694-053da714f95f?w=500&q=75&auto=format&fit=crop');"></div>
+        <h3>Summer</h3>
+        <p>Weekly mowing and edging to keep growth in check.</p>
+      </div>
+      <div class="season-card reveal">
+        <span class="season-label">III.</span>
+        <div class="season-photo" style="background-image:url('https://images.unsplash.com/photo-1625766924125-7b2ad2b4e3c2?w=500&q=85&auto=format&fit=crop');"></div>
+        <h3>Fall</h3>
+        <p>Leaf removal and irrigation winterization.</p>
+      </div>
+      <div class="season-card reveal">
+        <span class="season-label">IV.</span>
+        <div class="season-photo" style="background-image:url('https://images.unsplash.com/photo-1597514578288-1227906ae836?w=500&q=85&auto=format&fit=crop');"></div>
+        <h3>Winter</h3>
+        <p>On-call snow removal for driveways and walkways.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="work">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Recent work</div>
+      <h2>See it before you book it</h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-main reveal" style="background-image:linear-gradient(0deg, rgba(20,23,15,0.55) 0%, rgba(20,23,15,0) 45%), url('https://images.unsplash.com/photo-1681853108586-f29b4ef5c0fb?w=1000&q=85&auto=format&fit=crop'); background-size:cover; background-position:center;">
+        <span class="tag">Featured project</span>
+      </div>
+      <div class="gallery-side">
+        <div class="gallery-tile reveal" style="background-image:linear-gradient(180deg, rgba(20,23,15,0) 55%, rgba(20,23,15,0.6) 100%), url('https://images.unsplash.com/photo-1734303023491-db8037a21f09?w=700&q=85&auto=format&fit=crop'); background-size:cover; background-position:center; color:#EDEAE2 !important;">
+          <h4 style="color:#EDEAE2 !important;">Weekly mowing route</h4><p style="color:#EDEAE2 !important; opacity:0.9;">Farmington Hills — consistent, reliable service every week.</p>
+        </div>
+        <div class="gallery-tile reveal" style="background-image:linear-gradient(180deg, rgba(20,23,15,0) 55%, rgba(20,23,15,0.6) 100%), url('https://images.unsplash.com/photo-1458245201577-fc8a130b8829?w=700&q=85&auto=format&fit=crop'); background-size:cover; background-position:center; color:#EDEAE2 !important;">
+          <h4 style="color:#EDEAE2 !important;">Precision equipment</h4><p style="color:#EDEAE2 !important; opacity:0.9;">Clean lines, every visit, no shortcuts.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonial">
+  <div class="wrap reveal">
+    <blockquote>"They showed up when they said they would, and the yard has looked better every week since."</blockquote>
+    <cite>— Homeowner, Farmington Hills</cite>
+  </div>
+</section>
+
+<section class="section contact" id="contact">
+  <div class="wrap contact-grid">
+    <div class="contact-info reveal">
+      <div class="contact-photo" style="background-image:url('https://images.unsplash.com/photo-1630311853242-edd0c07766c0?w=800&q=85&auto=format&fit=crop');"></div>
+      <h2>Get your free quote</h2>
+      <p>Fill out the form and we'll get back to you within 48 hours with pricing and next available dates.</p>
+      <div class="contact-detail"><div><strong>Phone</strong>(248) 555-0134</div></div>
+      <div class="contact-detail"><div><strong>Service area</strong>Farmington Hills, Novi, West Bloomfield & surrounding</div></div>
+      <div class="contact-detail"><div><strong>Hours</strong>Mon–Sat, 7am–6pm</div></div>
+    </div>
+    <form id="quote-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="reveal">
+      <div class="form-row">
+        <div><label for="name">Name</label><input id="name" name="name" type="text" placeholder="Your name" required></div>
+        <div><label for="phone">Phone</label><input id="phone" name="phone" type="tel" placeholder="(248) 555-0000" required></div>
+      </div>
+      <div>
+        <label for="service">What do you need?</label>
+        <select id="service" name="service">
+          <option>Weekly lawn care</option>
+          <option>Landscape design</option>
+          <option>Seasonal cleanup</option>
+          <option>Snow removal</option>
+          <option>Hardscaping</option>
+          <option>Not sure — send options</option>
+        </select>
+      </div>
+      <div><label for="details">Property details</label><textarea id="details" name="details" placeholder="Approximate yard size, current condition, timing..."></textarea></div>
+      <button type="submit" class="submit-btn">Request a quote</button>
+      <p id="form-status" role="status" style="font-size:0.85rem; color:#3D4038; display:none;"></p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="logo">Greenfield Grounds</div>
+    <div>Demo site — built by Jack to showcase web design & AI chatbot work</div>
+  </div>
+</footer>
+
+<button id="chat-toggle" aria-label="Open chat">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.03 2 11c0 2.4 1.05 4.57 2.78 6.17-.09.9-.4 2.15-1.16 3.24a.5.5 0 0 0 .5.78c1.9-.4 3.36-1.24 4.2-1.83A11.6 11.6 0 0 0 12 20c5.52 0 10-4.03 10-9s-4.48-9-10-9z"/></svg>
+</button>
+
+<div id="chat-panel">
+  <div class="chat-header">
+    <div>Ask Greenfield<span class="sub">Usually replies in seconds</span></div>
+    <button id="chat-close" aria-label="Close chat">×</button>
+  </div>
+  <div class="chat-messages" id="chat-messages">
+    <div class="msg bot">Hi! Ask me about our services, pricing, or how to get a quote.</div>
+  </div>
+  <div class="chat-input-row">
+    <input type="text" id="chat-input" placeholder="Ask about services, pricing...">
+    <button class="chat-send" id="chat-send" aria-label="Send">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+    </button>
+  </div>
+</div>
+
+<script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if(entry.isIntersecting){ entry.target.classList.add('is-visible'); io.unobserve(entry.target); } });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Form submission
+  const quoteForm = document.getElementById('quote-form');
+  const statusEl = document.getElementById('form-status');
+  quoteForm.addEventListener('submit', async function(e){
+    e.preventDefault();
+    const btn = quoteForm.querySelector('.submit-btn');
+    const originalText = btn.textContent;
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    statusEl.style.display = 'none';
+    try{
+      const response = await fetch(quoteForm.action, { method:'POST', body:new FormData(quoteForm), headers:{'Accept':'application/json'} });
+      if(response.ok){
+        btn.textContent = 'Request sent';
+        statusEl.textContent = "Thanks — we'll get back to you within 48 hours.";
+        statusEl.style.color = '#33472E';
+        statusEl.style.display = 'block';
+        quoteForm.reset();
+        setTimeout(() => { btn.textContent = originalText; btn.disabled = false; }, 4000);
+      } else { throw new Error('failed'); }
+    } catch(err){
+      btn.textContent = originalText;
+      btn.disabled = false;
+      statusEl.textContent = "Something went wrong — please call us directly.";
+      statusEl.style.color = '#a03d3d';
+      statusEl.style.display = 'block';
+    }
+  });
+
+  // AI Chat widget
+  const chatToggle = document.getElementById('chat-toggle');
+  const chatPanel = document.getElementById('chat-panel');
+  const chatClose = document.getElementById('chat-close');
+  chatToggle.addEventListener('click', () => chatPanel.classList.toggle('open'));
+  chatClose.addEventListener('click', () => chatPanel.classList.remove('open'));
+
+  const chatMessages = document.getElementById('chat-messages');
+  const chatInput = document.getElementById('chat-input');
+  const chatSend = document.getElementById('chat-send');
+
+  const BUSINESS_CONTEXT = `You are a friendly assistant for Greenfield Grounds, a fictional demo landscaping and lawn care company used to showcase website and AI chatbot capabilities.
+Service area: Farmington Hills, Novi, West Bloomfield, MI. Phone: (248) 555-0134. Hours: Mon-Sat 7am-6pm.
+Services: Weekly Lawn Care, Landscape Design, Seasonal Cleanup (spring/fall), Snow Removal, Hardscaping (patios, walls), Irrigation Systems.
+Quotes are free, usually delivered within 48 hours after a property walkthrough.
+Answer briefly and warmly. Use plain text only - no markdown, no asterisks. If asked whether this is a real business, be honest that this is a demo website built to showcase what an AI assistant can do for a real business. If asked something you don't know, suggest calling.`;
+
+  function addMessage(text, sender){
+    const div = document.createElement('div');
+    div.className = 'msg ' + sender;
+    div.textContent = text;
+    chatMessages.appendChild(div);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  async function sendChat(){
+    const text = chatInput.value.trim();
+    if(!text) return;
+    addMessage(text, 'user');
+    chatInput.value = '';
+    const typingDiv = document.createElement('div');
+    typingDiv.className = 'msg bot';
+    typingDiv.innerHTML = '<span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span>';
+    chatMessages.appendChild(typingDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+    try{
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: text, businessContext: BUSINESS_CONTEXT })
+      });
+      const data = await response.json();
+      const reply = data.reply || "Sorry, could you rephrase that?";
+      typingDiv.remove();
+      addMessage(reply, 'bot');
+    } catch(err){
+      typingDiv.remove();
+      addMessage("Sorry, I'm having trouble connecting right now. Please call directly.", 'bot');
+    }
+  }
+  chatSend.addEventListener('click', sendChat);
+  chatInput.addEventListener('keydown', (e) => { if(e.key === 'Enter') sendChat(); });
+</script>
+
+</body>
+</html>
